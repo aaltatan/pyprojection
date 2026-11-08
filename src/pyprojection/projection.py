@@ -51,17 +51,21 @@ class Projection[T]:
 
     def __post_init__(self) -> None:
         seen: set[str] = set()
+
         for name, value in self.fields:
             _check_output_name(name)
+
             if not callable(value):
                 msg = f"Column '{name}' must be callable, received {value!r}"
                 raise InvalidColumnError(msg)
+
             if name in seen:
                 msg = (
                     f"Output name '{name}' is used more than once. "
                     "Give one of them another name with label=..."
                 )
                 raise DuplicateOutputNameError(msg)
+
             seen.add(name)
 
     @property
