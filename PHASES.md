@@ -6,12 +6,12 @@
 - [x] PyPI name searched: no `pyprojection` found, but `pyprojections` exists (confirm before publishing)
 
 ## Phase 1 — Design (written only)
-- [ ] `docs/DESIGN.md`: `Projection`, `&`, registry, `computed`, JSON shape, export recipes (CSV, `?fields=`)
-- [ ] Author confirms a screen lets users choose columns (gate for Phase 2)
+- [x] `docs/DESIGN.md`: `Projection`, `&`, registry, `computed`, JSON shape, export recipes (CSV, `?fields=`)
+- [x] Author confirms a screen lets users choose columns (gate for Phase 2): "build it", 2026-11-08
 
 ## Phase 2 — Core
-- [ ] `Projection`, `&`, `ProjectionRegistry` on `pyvocabulary.Vocabulary`, `computed`
+- [x] `Projection`, `&`, `ProjectionRegistry` on `pyvocabulary.Vocabulary`, `computed`
 
 ## Phase 3 — Compiler, schema and release
-- [ ] `ProjectionCompiler` with JSON-path errors; JSON Schema
+- [x] `ProjectionCompiler` with JSON-path errors; JSON Schema
 - [ ] GitHub repository, CI, PyPI

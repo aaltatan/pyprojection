@@ -13,7 +13,7 @@ dependencies = [
 ]
 keywords = ["projection", "export", "serialization", "json", "dsl", "composition"]
 classifiers = [
-    "Development Status :: 1 - Planning",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
@@ -35,14 +35,16 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "jsonschema>=4.26.0",
+    "pyformula>=0.1.1",
     "pytest>=9.1.1",
     "pytest-cov>=6.0",
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "src"]
+testpaths = ["tests", "src", "README.md"]
 pythonpath = ["."]
-addopts = ["--doctest-modules", "--strict-markers"]
+addopts = ["--doctest-modules", "--doctest-glob=README.md", "--strict-markers"]
 doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE"]
 
 [tool.coverage.run]
@@ -68,7 +70,13 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "PLR2004", "ANN", "ARG", "INP001", "E501"]
+"examples/**" = ["S101", "T201", "INP001", "PT017"]  # plain scripts that print and assert
 
 [tool.uv.sources]
 # the sibling checkout in ~/dev until pyvocabulary is published on PyPI
 pyvocabulary = { path = "../pyvocabulary", editable = true }
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "strict"

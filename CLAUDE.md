@@ -3,7 +3,7 @@
 Output shapes as values (planned). `columns["name"]() & columns["salary"](label="Monthly pay")
 & computed("Yearly pay", salary * 12)` is a `Projection` mapping one subject to one dict. The
 registry is the privacy boundary for exports: unregistered fields can never be selected.
-Nothing is implemented yet. Phase 1 is a written design only: do not write library code until the author confirms a real project needs this package. It ranks last in the family: build it only when a screen lets users choose their own columns.
+0.1 is built (core, compiler, JSON Schema), not published. Design notes: `docs/DESIGN.md`.
 
 ## The family
 
@@ -21,7 +21,7 @@ errors, and a JSON Schema generated from signatures.
 | pyruleset | `T -> V`, first match wins | `\|` | 0.1 built, not published |
 | pyordering | `T -> sort key` | `>>`, `~` | planned |
 | pyaggregation | `Iterable[T] -> dict` | `&` | planned |
-| pyprojection | `T -> dict` | `&` | planned |
+| pyprojection | `T -> dict` | `&` | 0.1 built, not published |
 
 All repositories live side by side in `~/dev/<name>` on the author's machine.
 
