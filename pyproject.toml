@@ -1,6 +1,6 @@
 [project]
 name = "pyprojection"
-version = "0.1.2"
+version = "0.1.3"
 description = "Output shapes as values: which fields, under which names, computed how; definable as JSON."
 readme = "README.md"
 authors = [
@@ -9,7 +9,7 @@ authors = [
 license = "GPL-3.0-only"
 requires-python = ">=3.12"
 dependencies = [
-    "pyvocabulary>=0.1.0",
+    "pyvocabulary>=0.1.3",
 ]
 keywords = ["projection", "export", "serialization", "json", "dsl", "composition"]
 classifiers = [
@@ -36,7 +36,7 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "jsonschema>=4.26.0",
-    "pyformula>=0.1.1",
+    "pyformula>=0.2.0",
     "pytest>=9.1.1",
     "pytest-cov>=6.0",
 ]
@@ -71,10 +71,6 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "PLR2004", "ANN", "ARG", "INP001", "E501"]
 "examples/**" = ["S101", "T201", "INP001", "PT017"]  # plain scripts that print and assert
-
-[tool.uv.sources]
-# the sibling checkout in ~/dev until pyvocabulary is published on PyPI
-pyvocabulary = { path = "../pyvocabulary", editable = true }
 
 [tool.pyright]
 venvPath = "."
