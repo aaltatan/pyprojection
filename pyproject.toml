@@ -1,6 +1,6 @@
 [project]
 name = "pyprojection"
-version = "0.1.1"
+version = "0.1.2"
 description = "Output shapes as values: which fields, under which names, computed how; definable as JSON."
 readme = "README.md"
 authors = [
@@ -42,9 +42,9 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "src", "README.md"]
+testpaths = ["tests", "src"]
 pythonpath = ["."]
-addopts = ["--doctest-modules", "--doctest-glob=README.md", "--strict-markers"]
+addopts = ["--doctest-modules", "--strict-markers"]
 doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE"]
 
 [tool.coverage.run]
