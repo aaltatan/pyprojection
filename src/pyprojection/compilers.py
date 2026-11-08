@@ -106,13 +106,16 @@ class ProjectionCompiler[T]:
         """
         if not isinstance(definition, list):
             raise _invalid(_ROOT, f"expected a list, received {definition!r}")
+
         if not definition:
             raise _invalid(_ROOT, "expected at least one column")
 
         projection: Projection[T] = Projection(())
+
         for index, item in enumerate(cast("list[Any]", definition)):
             path = index_path(_ROOT, index)
             column = self._compile_column(item, path)
+
             with located(path, DuplicateOutputNameError):
                 projection &= column
 
@@ -125,12 +128,16 @@ class ProjectionCompiler[T]:
                     return self._columns[item]()
             case Mapping():
                 item = cast("Mapping[str, Any]", item)
+
                 if "name" in item and "formula" in item:
                     raise _invalid(path, "use either 'name' or 'formula', not both")
+
                 if "formula" in item:
                     return self._compile_computed(item, path)
+
                 if "name" in item:
                     return self._compile_call(item, path)
+
                 raise _invalid(path, "missing 'name' or 'formula'")
             case _:
                 raise _invalid(path, f"expected a column name or an object, received {item!r}")
@@ -141,12 +148,16 @@ class ProjectionCompiler[T]:
 
         if not isinstance(name, str):
             raise _invalid(key_path(path, "name"), f"expected a string, received {name!r}")
+
         if not isinstance(args, list):
             raise _invalid(key_path(path, "args"), f"expected a list, received {args!r}")
+
         if not isinstance(kwargs, Mapping):
             raise _invalid(key_path(path, "kwargs"), f"expected an object, received {kwargs!r}")
+
         if "label" in kwargs:
             raise _invalid(key_path(path, "kwargs"), "'label' goes beside 'name', not in 'kwargs'")
+
         label = _label(item, path) if "label" in item else None
 
         with located(path, ColumnDoesNotExistError, InvalidColumnArgumentsError):
@@ -156,8 +167,10 @@ class ProjectionCompiler[T]:
 
     def _compile_computed(self, item: Mapping[str, Any], path: str) -> Projection[T]:
         _check_unknown_keys(item, _COMPUTED_KEYS, path)
+
         if "label" not in item:
             raise _invalid(path, "missing 'label', a computed column needs an output name")
+
         label = _label(item, path)
 
         if self._formulas is None:
@@ -176,8 +189,10 @@ class ProjectionCompiler[T]:
 
 def _label(item: Mapping[str, Any], path: str) -> str:
     label = item["label"]
+
     if not isinstance(label, str) or not label:
         raise _invalid(key_path(path, "label"), f"expected a non-empty string, received {label!r}")
+
     return label
 
 

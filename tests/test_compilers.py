@@ -60,27 +60,33 @@ class TestErrors:
     def test_unknown_column_keeps_its_type_and_gets_the_path(self, compiler):
         with pytest.raises(ColumnDoesNotExistError, match="Available columns") as info:
             compiler.compile(["name", "salary"])
+
         assert info.value.__notes__ == ["at $[1]"]
 
     def test_hidden_column_cannot_be_selected(self, compiler):
         with pytest.raises(ColumnDoesNotExistError) as info:
             compiler.compile([{"name": "national_id"}])
+
         assert info.value.__notes__ == ["at $[0]"]
 
     def test_bad_arguments_get_the_path(self, compiler):
         with pytest.raises(InvalidColumnArgumentsError) as info:
             compiler.compile(["name", {"name": "department", "kwargs": {"lower": True}}])
+
         assert info.value.__notes__ == ["at $[1]"]
 
     def test_duplicate_output_name_gets_the_path(self, compiler):
         with pytest.raises(DuplicateOutputNameError) as info:
             compiler.compile(["name", "department", {"name": "department"}])
+
         assert info.value.__notes__ == ["at $[2]"]
 
     def test_formula_errors_keep_their_type_and_get_the_path(self, compiler):
         bad = {"label": "x", "formula": {"operator": "add", "expressions": ["salry", 1]}}
+
         with pytest.raises(FormulaNotFoundError) as info:
             compiler.compile(["name", bad])
+
         # pyformula reports the path inside the formula; pyprojection prefixes its own
         assert info.value.__notes__ == ["at $[1].formula.expressions[0]"]
 

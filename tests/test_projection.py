@@ -90,5 +90,6 @@ class TestDirectConstruction:
 
     def test_is_immutable(self, columns):
         projection = columns["name"]()
+
         with pytest.raises(AttributeError):
             projection.fields = ()  # type: ignore[misc]

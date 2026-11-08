@@ -1,6 +1,6 @@
 [project]
 name = "pyprojection"
-version = "0.1.0"
+version = "0.1.1"
 description = "Output shapes as values: which fields, under which names, computed how; definable as JSON."
 readme = "README.md"
 authors = [
