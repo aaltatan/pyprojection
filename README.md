@@ -1,5 +1,7 @@
 # pyprojection
 
+**Documentation: <https://aaltatan.github.io/pyprojection/>**
+
 Output shapes as values: which fields, under which names, computed how. Composable with `&`
 and definable as JSON.
 
